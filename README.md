@@ -1,5 +1,9 @@
 # liri-node-app
 
+#####note: you'll need to run
+npm i
+to install all relevant node packages before liri will work. You'll also need your own .env file with Spotify credentials.
+
     Thanks for using LiriBot! This is a command line tool for gathering
     information on movies, concerts, and songs.
 
