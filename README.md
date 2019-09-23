@@ -1,7 +1,5 @@
 # liri-node-app
 
-****
-
     Thanks for using LiriBot! This is a command line tool for gathering
     information on movies, concerts, and songs.
 
@@ -32,4 +30,3 @@
 
         Displays this information again.
 
-    ****
