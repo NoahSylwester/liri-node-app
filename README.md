@@ -1,6 +1,6 @@
 # liri-node-app
 
-####note: you'll need to run
+#### note: you'll need to run
 npm i
 to install all relevant node packages before liri will work. You'll also need your own .env file with Spotify credentials.
 
