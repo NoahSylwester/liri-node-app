@@ -182,5 +182,45 @@ Please enter the number to return (starting with earliest, default is one).`
       run();
     });
   }
+  else if (process.argv[2] === "help") {
+    console.log(`
+    ****
+
+    List of commands:
+
+      node liri.js concert-this <artist/band name>...
+
+        Queries the Bands in Town Artist Events API for information
+        about upcoming events concerning the input. Displays venue,
+        location, and date for a specificed number of events.
+
+      node liri.js spotify-this-song <song name>...
+
+        Queries the Spotify API for information about the input.
+        Displays artist(s), song name, external Spotify URL, and album.
+
+      node liri.js movie-this <movie name>...
+
+        Queries the OMDB API for information about the input. Displays
+        movie title, release year, ratings form IMDB and Rotten Tomatoes,
+        country of origin, language, plot, and actor(s).
+
+      node liri.js do-what-it-says
+
+        Runs the program with inputs from random.txt.
+
+      node liri.js help
+
+        Displays this information again.
+
+    ****
+    `)
+  }
+  else {
+    console.log(`
+    Command not recognized.
+    Please type "node liri.js help" to see a list of recognized commands.
+    `)
+  }
 }
 run();
