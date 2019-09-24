@@ -170,6 +170,7 @@ function movieThis() {
 };
 
 // identify user command in run function
+// options: concert-this, movie-this, spotify-this-song, help, and speech
 function run() {
 
   if (process.argv[2] === "concert-this") {
@@ -199,11 +200,12 @@ function run() {
     });
   }
   else if (process.argv[2] === "speech") {
+    // import speech function from speech.js, pass in witToken and run function
     var speechToText = require('./speech.js');
-    var input1; var input2;
     speechToText(witToken, run);
   }
   else if (process.argv[2] === "help") {
+    // help text
     console.log(`
     ****
 
@@ -256,9 +258,10 @@ function run() {
     `)
   }
   else {
+    // when a command isn't recognized
     console.log(`
-    Command not recognized.
-    Please type "node liri.js help" to see a list of recognized commands.
+        Command not recognized.
+        Please type "node liri.js help" to see a list of recognized commands.
     `)
   }
 }
