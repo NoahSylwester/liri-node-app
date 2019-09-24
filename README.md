@@ -32,6 +32,21 @@
 
         Runs the program with inputs from random.txt.
 
+      node liri.js speech
+
+        Records a spoken user input from computer microphone, and executes
+        a corresponding search. Commands should be in the form
+
+          <concert/movie/spotify> <name of desired input>
+
+        For example, a user searching for information on the movie
+        "Annihilation" would say, "movie Annihilation."
+
+        Uses the Wit.ai Speech API and the node-record-lpcm-16 package:
+
+          https://wit.ai/
+          https://www.npmjs.com/package/node-record-lpcm16
+
       node liri.js help
 
         Displays this information again.
