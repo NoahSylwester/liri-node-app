@@ -54,7 +54,7 @@ function concertThis() {
         };
         if (events.length === 0) {
           console.log(`
-        Found 0 events.
+        Found no events.
           `);
         }
         else {
@@ -91,7 +91,9 @@ Please enter the number to return (starting with earliest, default is one).`
       })
       .catch(function (error) {
         // handle error
-        console.log("No events found.");
+        console.log(`
+        Found no events.
+          `);
       })
       .finally(function () {
         // always executed

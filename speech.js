@@ -14,27 +14,27 @@ function speechToText(witTokenInput, run) {
     // extract text interpretation from response
     textInterpretation = body.substring(body.search("_text") + 10, body.search('",'));
     console.log(`
-        You said: ${textInterpretation}
+        You said: '${textInterpretation}'
       `);
     // concert-this
     if (textInterpretation.search("concert") === 0) {
       process.argv[2] = "concert-this";
       process.argv[3] = textInterpretation.substring(8, textInterpretation.length);
-      console.log(process.argv[2] + " " + process.argv[3]);
+      console.log(">>Command: " + process.argv[2] + " " + process.argv[3]);
       run();
     }
     // movie-this
     else if (textInterpretation.search("movie") === 0) {
       process.argv[2] = "movie-this";
       process.argv[3] = textInterpretation.substring(6, textInterpretation.length);
-      console.log(process.argv[2] + " " + process.argv[3]);
+      console.log(">>Command: " + process.argv[2] + " " + process.argv[3]);
       run();
     }
     // spotify-this-song
     else if (textInterpretation.search("spotify") === 0) {
       process.argv[2] = "spotify-this-song";
       process.argv[3] = textInterpretation.substring(8, textInterpretation.length);
-      console.log(process.argv[2] + " " + process.argv[3]);
+      console.log(">>Command: " + process.argv[2] + " " + process.argv[3]);
       run();
     }
     else { // unrecognized command
