@@ -51,7 +51,13 @@ function concertThis() {
             location: `${response.data[i].venue.city}, ${response.data[i].venue.country}`,
             date: moment(response.data[i].datetime, 'YYYY-MM-DDThh:mm:ss').format("dddd, MMMM Do YYYY, h:mm a")
           })
+        };
+        if (events.length === 0) {
+          console.log(`
+        Found 0 events.
+          `);
         }
+        else {
         inquirer.prompt([{
           name: "return",
           type: "input",
@@ -81,6 +87,7 @@ Please enter the number to return (starting with earliest, default is one).`
         logData();
           }
         });
+      }
       })
       .catch(function (error) {
         // handle error
@@ -89,6 +96,7 @@ Please enter the number to return (starting with earliest, default is one).`
       .finally(function () {
         // always executed
       });
+    
 };
 // spotify function
 function spotifyThis() {
@@ -190,6 +198,11 @@ function run() {
       run();
     });
   }
+  else if (process.argv[2] === "speech") {
+    var speechToText = require('./speech.js');
+    var input1; var input2;
+    speechToText(witToken, run);
+  }
   else if (process.argv[2] === "help") {
     console.log(`
     ****
@@ -219,6 +232,21 @@ function run() {
       node liri.js do-what-it-says
 
         Runs the program with inputs from random.txt.
+
+      node liri.js speech
+
+        Records a spoken user input from computer microphone, and executes
+        a corresponding search. Commands should be in the form
+
+          <concert/movie/spotify> <name of desired input>
+
+        For example, a user searching for information on the movie
+        "Annihilation" would say, "movie Annihilation."
+
+        Uses the Wit.ai Speech API and the node-record-lpcm-16 package:
+
+          https://wit.ai/
+          https://www.npmjs.com/package/node-record-lpcm16
 
       node liri.js help
 
