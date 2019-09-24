@@ -2,7 +2,7 @@
 
 ### A command line tool for gathering information about concerts, songs, and movies.
 
-#### note: you'll need to run 'npm i' to install all relevant node packages before liri will work. You'll also need your own .env file with Spotify credentials.
+#### note: you'll need to run 'npm i' to install all relevant node packages before liri will work. You'll also need your own .env file with Spotify credentials, and you'll need to install the CLI SoX (http://sox.sourceforge.net/) to get the speech function to work.
 
 ###### from the help function:
 

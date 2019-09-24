@@ -7,7 +7,7 @@ var fs = require('fs');
 
 var keys = require("./keys.js");
 var spotify = new Spotify(keys.spotify);
-var witToken = keys.wit;
+var witToken = 'NI2OFL5O2BYA4N7I6YYEGNJPJXXY2EAE';
 
 var log;
 
