@@ -7,6 +7,7 @@ var fs = require('fs');
 
 var keys = require("./keys.js");
 var spotify = new Spotify(keys.spotify);
+var witToken = keys.wit;
 
 var log;
 
@@ -36,12 +37,9 @@ var logData = function() {
   });
 }
 
-// identify user command in run function
-
-function run() {
-  // concert function
-  if (process.argv[2] === "concert-this") {
-    var artist = parseInput();
+// concert function
+function concertThis() {
+  var artist = parseInput();
     var queryUrl = `https://rest.bandsintown.com/artists/${artist}/events?app_id=codingbootcamp`;
     axios.get(queryUrl)
       .then(function (response) {
@@ -73,7 +71,6 @@ Please enter the number to return (starting with earliest, default is one).`
         Location: ${events[i].location}
         Date: ${events[i].date}
         `);
-          }
         // handle log
         log = `
         CONCERT QUERY
@@ -82,6 +79,7 @@ Please enter the number to return (starting with earliest, default is one).`
         Date: ${events[i].date}
         `
         logData();
+          }
         });
       })
       .catch(function (error) {
@@ -91,44 +89,41 @@ Please enter the number to return (starting with earliest, default is one).`
       .finally(function () {
         // always executed
       });
-  }
-
-  // spotify function
-
-  else if (process.argv[2] === "spotify-this-song") {
-    var song = parseInput();
-    spotify
-      .search({ type: 'track', query: song })
-      .then(function (response) {
-        var names = [];
-        for (let i = 0; i < response.tracks.items[0].artists.length; i++) {
-          names.push(" " + response.tracks.items[0].artists[i].name);
-        }
-        console.log(`
-        Artist(s):${names}
-        Track title: ${response.tracks.items[0].name}
-        Spotify url: ${response.tracks.items[0].external_urls.spotify}
-        Album name: ${response.tracks.items[0].album.name}
-      `);
-      // handle log
-      log = `
-      SONG QUERY
+};
+// spotify function
+function spotifyThis() {
+  var song = parseInput();
+  spotify
+    .search({ type: 'track', query: song })
+    .then(function (response) {
+      var names = [];
+      for (let i = 0; i < response.tracks.items[0].artists.length; i++) {
+        names.push(" " + response.tracks.items[0].artists[i].name);
+      }
+      console.log(`
       Artist(s):${names}
       Track title: ${response.tracks.items[0].name}
       Spotify url: ${response.tracks.items[0].external_urls.spotify}
       Album name: ${response.tracks.items[0].album.name}
-    `
-      logData();
-      })
-      .catch(function (err) {
-        console.log("Song not found.");
-      });
-  }
+    `);
+    // handle log
+    log = `
+    SONG QUERY
+    Artist(s):${names}
+    Track title: ${response.tracks.items[0].name}
+    Spotify url: ${response.tracks.items[0].external_urls.spotify}
+    Album name: ${response.tracks.items[0].album.name}
+  `
+    logData();
+    })
+    .catch(function (err) {
+      console.log("Song not found.");
+    });
+}
 
-  // movie function
-
-  else if (process.argv[2] === "movie-this") {
-    var movie = parseInput();
+// movie function
+function movieThis() {
+  var movie = parseInput();
     var queryUrl = `http://www.omdbapi.com/?apikey=trilogy&t=${movie}`;
     axios.get(queryUrl)
       .then(function (response) {
@@ -164,6 +159,19 @@ Please enter the number to return (starting with earliest, default is one).`
       .finally(function () {
         // always executed
       });
+};
+
+// identify user command in run function
+function run() {
+
+  if (process.argv[2] === "concert-this") {
+    concertThis();
+  }
+  else if (process.argv[2] === "spotify-this-song") {
+    spotifyThis();
+  }
+  else if (process.argv[2] === "movie-this") {
+    movieThis();
   }
   else if (process.argv[2] === "do-what-it-says") {
     // read in random.txt
@@ -185,6 +193,9 @@ Please enter the number to return (starting with earliest, default is one).`
   else if (process.argv[2] === "help") {
     console.log(`
     ****
+
+    Thanks for using LiriBot! This is a command line tool for gathering
+    information on movies, concerts, and songs.
 
     List of commands:
 

@@ -23,6 +23,7 @@
     "fs": "0.0.1-security",
     "inquirer": "^7.0.0",
     "moment": "^2.24.0",
+    "node-record-lpcm16": "^1.0.1",
     "node-spotify-api": "^1.1.1"
   }
 }
