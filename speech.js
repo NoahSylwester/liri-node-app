@@ -46,11 +46,16 @@ function speechToText(witTokenInput, run) {
 
   // create .wav file that we will record into
   const file = fs.createWriteStream('speech.wav', { encoding: 'binary' });
-  const recording = recorder.record();
+  const recording = recorder.record({
+    recorder: 'sox'
+  });
+  setTimeout(() => {
+    console.log("Now recording...")
+  }, 1000);
 
   // begin recording
   recording.stream().pipe(file);
-  console.log("Now recording...");
+  
 
   // Stop recording after three seconds
   setTimeout(() => {
