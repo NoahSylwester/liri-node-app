@@ -51,3 +51,6 @@
 
         Displays this information again.
 
+### A quick demo of the basic functions
+
+![demo gif](demo.gif)
