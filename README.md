@@ -51,6 +51,10 @@
 
         Displays this information again.
 
-### A quick demo of the basic functions
+### A demo of the basic functions
 
-![demo gif](demo.gif)
+![demo gif](demoBasic.gif)
+
+### A demo of the speech function
+
+![demo gif](demoSpeech.gif)
